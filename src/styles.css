@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Avenir Next", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-bg: #141311;
+  --color-surface: #1c1a16;
+  --color-elevated: #28241e;
+  --color-inset: #0e0d0b;
+  --color-fg: #f4f0e8;
+  --color-muted: #a39c90;
+  --color-line: #3a342c;
+  --color-honey: #e0a15a;
+  --color-ink: #1a1612;
+  --color-sage: #8ea892;
+  --color-clay: #c4886c;
+  --color-mist: #8e9aab;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body {
+    height: 100%;
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+
+  body {
+    margin: 0;
+    overflow: hidden;
+    font-family: var(--font-sans);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-honey);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-honey) 45%, transparent);
+    color: var(--color-fg);
+  }
+}
+
+.fader {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2rem;
+  background: transparent;
+  cursor: pointer;
+}
+
+.fader:focus {
+  outline: none;
+}
+
+.fader:focus-visible {
+  outline: 2px solid var(--color-honey);
+  outline-offset: 2px;
+}
+
+.fader::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--color-line);
+}
+
+.fader::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -7px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-fg);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.45);
+}
+
+.fader::-moz-range-track {
+  height: 4px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-line);
+}
+
+.fader::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-fg);
+}
+
+.panel-pop {
+  box-shadow: 0 16px 40px rgb(0 0 0 / 0.4);
+}
+
+@keyframes rec-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.rec-live {
+  animation: rec-pulse 1.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rec-live {
+    animation: none;
+  }
+}
